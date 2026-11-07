@@ -1,0 +1,23 @@
+# 먀오 VOD 체크 v21 — 배포용
+
+## 구성
+- `index.html`: 화면, 각 방문자의 브라우저 localStorage에 대기/완료/제외/선택 상태 저장
+- `server.js`: SOOP VOD 목록 및 조회수 수집 후 모든 방문자에게 동일한 읽기 전용 API 응답 제공
+- `package.json`: Node.js 20 이상 실행 설정 (추가 패키지 불필요)
+
+## GitHub + Render 배포
+1. GitHub에서 새 저장소(`meow-vod-check`)를 만들고 이 폴더의 파일을 저장소 최상위에 업로드합니다. `.gitignore` 포함, `실행하기.bat` 및 `server.ps1` 불필요.
+2. Render > New > Web Service > GitHub 저장소 연결.
+3. Language/Runtime: Node, Build Command: `npm install`, Start Command: `npm start`.
+4. 배포가 성공하면 Render에서 제공하는 `https://...onrender.com` 주소를 공유합니다.
+5. Render 무료 플랜은 유휴 상태에서 슬립될 수 있고 사용량 제한이 있으므로 24시간 주기 갱신을 보장하지 않습니다.
+
+## 로컬 확인
+Node.js 20 이상 설치 후 `npm start` 실행, `http://localhost:3000` 접속.
+
+## 주의
+- SOOP API는 비공식 사용 형태이며 요청 제한/응답 구조 변경/서버 차단으로 수집이 실패할 수 있습니다. 실제 클라우드에서 API 접근은 검증되지 않았습니다.
+- 각 사용자의 브라우저에만 개인별 분류와 플레이어 선택 상태가 저장됩니다. 브라우저 데이터 삭제나 기기 변경 시 기록은 이어지지 않습니다.
+- VOD 조회수 및 상세 정보는 서버가 최대 60건씩 순차 조회해 캐시합니다. 첫 요청 시 시간이 걸릴 수 있습니다.
+- SOOP의 `grade > 0`은 연령 제한의 공식 확정 기준으로 검증되지 않았으며 현재 버전은 제한 가능성으로 분류합니다.
+- SOOP 임베드의 로그인 쿠키 사용 여부는 방문자의 브라우저 및 확장 프로그램 설정에 따라 달라집니다.
