@@ -1,8 +1,13 @@
 {
   "name": "meow-vod-check",
-  "version": "23.0.0",
+  "version": "24.0.0",
   "private": true,
   "description": "먀오 VOD 체크 - 개인별 상태 저장, SOOP 공통 정보 갱신",
-  "scripts": {"start": "node server.js", "check": "node --check server.js"},
-  "engines": {"node": ">=20"}
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }
